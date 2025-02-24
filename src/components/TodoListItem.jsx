@@ -4,6 +4,7 @@ import {
     MdOutlineCheckBoxOutlineBlank,
     MdRemoveCircleOutline
 } from "react-icons/md";
+import {memo} from "react";
 
 const TodoItemContainer = styled.div`
     display: flex;
@@ -70,7 +71,7 @@ const RemoveIcon = styled(MdRemoveCircleOutline)`
     color: #ff6b6b;
 `;
 
-const TodoListItem = ({ todo, onRemove, onCheck }) => {
+const TodoListItem = memo(({ todo, onRemove, onCheck }) => {
     const { id, task, checked } = todo;
 
     return (
@@ -84,6 +85,6 @@ const TodoListItem = ({ todo, onRemove, onCheck }) => {
             </RemoveButton>
         </TodoItemContainer>
     );
-};
+});
 
 export default TodoListItem;
