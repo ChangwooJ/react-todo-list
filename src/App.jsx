@@ -29,8 +29,6 @@ function createBulkTodos() {
 const App = () => {
   const [todoList, setTodoList] = useState(() => createBulkTodos());
 
-  const filteredTodoList = useMemo(() => todoList, [todoList]);
-
   const handleAddTodo = useCallback((text) => {
     setTodoList((prev) => [
       ...prev,
@@ -60,7 +58,7 @@ const App = () => {
         <Header />
         <TodoInsert onAddTodo={handleAddTodo} />
         <TodoList
-          todoList={filteredTodoList}
+          todoList={todoList}
           onCheckTodo={toggleTodoChecked}
           onDeleteTodo={handleDeleteTodo}
         />
