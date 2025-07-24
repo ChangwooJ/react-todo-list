@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
 import React from "react";
+import { AutoSizer, List } from "react-virtualized";
 
 const TodoListContainer = styled.div`
   width: 100%;
@@ -20,11 +21,33 @@ const TodoListContainer = styled.div`
 `;
 
 const TodoList = ({ todoList, onToggle, onDeleteTodo }) => {
+  const rowRenderer = ({ index, key, style }) => {
+    const todo = todoList[index];
+    return (
+      <div key={key} style={style}>
+        <TodoListItem
+          todo={todo}
+          onToggle={onToggle}
+          onDeleteTodo={onDeleteTodo}
+        />
+      </div>
+    );
+  };
+  
   return (
     <TodoListContainer>
-      {todoList.map((todo) => (
-        <TodoListItem key={todo.id} todo={todo} onToggle={onToggle} onDeleteTodo={onDeleteTodo} />
-      ))}
+      <AutoSizer>
+        {({ width, height }) => (
+          <List
+            width={width}
+            height={height}
+            rowCount={todoList.length}
+            rowHeight={40}
+            rowRenderer={rowRenderer}
+            overscanRowCount={5}
+          />
+        )}
+      </AutoSizer>
     </TodoListContainer>
   );
 }
