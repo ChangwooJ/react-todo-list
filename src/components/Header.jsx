@@ -15,7 +15,7 @@ const HeaderContainer = styled.div`
 const Header = () => {
   return (
     <HeaderContainer>
-      <img src={greedy} alt="그리디 이미지" width={80} height={80} />
+      <img src={greedy} alt="그리디 이미지" style={{ height: "100%", aspectRatio: "1 / 1" }} />
       <h2 style={{ fontSize: "2rem", color: "white" }}>일정 관리</h2>
     </HeaderContainer>
   )
