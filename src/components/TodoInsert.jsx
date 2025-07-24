@@ -1,7 +1,7 @@
 // 새로운 항목을 입력하고 추가할 수 있는 컴포넌트. state를 통해서 인풋의 상태를 관리합니다.
 import styled from "styled-components";
 import { CgAdd } from "react-icons/cg";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const TodoInsertContainer = styled.div`
   display: flex;
@@ -62,4 +62,4 @@ const TodoInsert = ({ onAddTodoItem }) => {
   );
 }
 
-export default TodoInsert;
+export default React.memo(TodoInsert);

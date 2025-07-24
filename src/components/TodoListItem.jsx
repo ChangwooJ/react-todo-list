@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { AiFillMinusCircle } from "react-icons/ai";
+import React from "react";
 
 const TodoListItemContainer = styled.div`
   display: flex;
@@ -43,4 +44,4 @@ const TodoListItem = ({ todo, onToggle, onDeleteTodo }) => {
   );
 };
 
-export default TodoListItem;
+export default React.memo(TodoListItem);

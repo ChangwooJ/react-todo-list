@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
+import React from "react";
 
 const TodoListContainer = styled.div`
   width: 100%;
@@ -28,4 +29,4 @@ const TodoList = ({ todoList, onToggle, onDeleteTodo }) => {
   );
 }
 
-export default TodoList;
+export default React.memo(TodoList);
