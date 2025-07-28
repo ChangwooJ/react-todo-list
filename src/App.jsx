@@ -2,7 +2,7 @@ import "./App.css";
 import TodoTemplate from "./components/TodoTemplate";
 import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 function createBulkTodos() {
   const array = [];
@@ -18,19 +18,12 @@ function createBulkTodos() {
 
 function App() {
   const [todoList, setTodoList] = useState(() => createBulkTodos());
+  const nextId = useRef(1);
 
   const handleAddTodoItem = useCallback((item) => {
-    setTodoList((prev) => {
-      const nextId = prev.length > 0 ? prev[prev.length - 1].id + 1 : 1;
-      return [
-        ...prev,
-        {
-          id: nextId,
-          text: item,
-          checked: false,
-        },
-      ];
-    });
+    const todo = { id: nextId.current, text: item, checked: false };
+    setTodos(todos => todos.concat(todo));
+    nextId.current += 1;
   }, []);
 
   const handleToggle = useCallback((id) => {
